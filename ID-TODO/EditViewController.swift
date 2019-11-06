@@ -47,6 +47,7 @@ class EditViewController: UIViewController {
 
     @IBAction func updateTask(_ sender: Any) {
         editDelegate?.didUpdateOrAdd(title: titleTextField.text ?? "", desc: descriptionTextField.text, index: fromIndex)
+        self.dismiss(animated: true, completion: nil)
     }
 
     @objc func doneWithTask(_ sender: Any) {
