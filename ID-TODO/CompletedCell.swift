@@ -9,12 +9,14 @@
 import UIKit
 
 protocol CompletedCellProtocol: class {
-    func didTapEdit(data: String?)
+    func didTapEdit(index: Int, textString: String?)
 }
 
 class CompletedCell: UITableViewCell {
 
     weak var cellDelegate: CompletedCellProtocol?
+
+    var index: Int!
 
 
     @IBOutlet weak var doneTaskLabel: UILabel!
@@ -35,7 +37,7 @@ class CompletedCell: UITableViewCell {
 
 
     @IBAction func editTask(_ sender: Any) {
-        cellDelegate?.didTapEdit(data: doneTaskLabel.text)
+        cellDelegate?.didTapEdit(index: index, textString: doneTaskLabel.text)
     }
 
 }

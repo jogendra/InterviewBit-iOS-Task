@@ -43,6 +43,7 @@ class CompletedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "compCell", for: indexPath) as! CompletedCell
         cell.cellDelegate = self
+        cell.index = indexPath.row
         cell.doneTaskLabel.text = completedTask[indexPath.row]
         return cell
     }
@@ -54,10 +55,20 @@ class CompletedTableViewController: UITableViewController {
 }
 
 extension CompletedTableViewController: CompletedCellProtocol {
-    func didTapEdit(data: String?) {
+
+    func didTapEdit(index: Int, textString: String?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "editVC")
+        let editVC = storyboard.instantiateViewController(identifier: "editVC") as! EditViewController
+        editVC.fromIndex = index
+        editVC.taskString = textString
+        editVC.editDelegate = self
         let navVC = UINavigationController(rootViewController: editVC)
         self.present(navVC, animated: true)
+    }
+}
+
+extension CompletedTableViewController: EditVCProtocol {
+    func didUpdateOrAdd(title: String, desc: String?, index: Int) {
+        completedTask[index] = title
     }
 }
