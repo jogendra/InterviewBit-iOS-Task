@@ -10,6 +10,7 @@ import UIKit
 
 protocol PendingCellProtocol: class {
     func didTapEdit(for index: Int, taskString: String?)
+    func didMarkedTask(index: Int, taskString: String?)
 }
 
 class PendingCell: UITableViewCell {
@@ -32,7 +33,7 @@ class PendingCell: UITableViewCell {
     }
 
     @IBAction func doneButtonTapped(_ sender: Any) {
-        
+        pendingDelegate?.didMarkedTask(index: index, taskString: pendingTitleLabel.text)
     }
 
     @IBAction func editTask(_ sender: Any) {

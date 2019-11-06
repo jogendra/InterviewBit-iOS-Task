@@ -66,6 +66,7 @@ class PendingTableViewController: UITableViewController {
 }
 
 extension PendingTableViewController: PendingCellProtocol {
+
     func didTapEdit(for index: Int, taskString: String?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let editVC = storyboard.instantiateViewController(identifier: "editVC") as! EditViewController
@@ -74,6 +75,14 @@ extension PendingTableViewController: PendingCellProtocol {
         editVC.editDelegate = self
         let navVC = UINavigationController(rootViewController: editVC)
         self.present(navVC, animated: true)
+    }
+
+    func didMarkedTask(index: Int, taskString: String?) {
+        pendingTask.remove(at: index)
+        self.tableView.reloadData()
+        let secondTabNav = self.tabBarController?.viewControllers![1] as! UINavigationController
+        let secondTab = secondTabNav.topViewController as! CompletedTableViewController
+        secondTab.completedTask.append(taskString ?? "")
     }
 }
 

@@ -10,7 +10,11 @@ import UIKit
 
 class CompletedTableViewController: UITableViewController {
 
-    var completedTask = [String]()
+    var completedTask = [String]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +43,7 @@ class CompletedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "compCell", for: indexPath) as! CompletedCell
         cell.cellDelegate = self
-
+        cell.doneTaskLabel.text = completedTask[indexPath.row]
         return cell
     }
 
