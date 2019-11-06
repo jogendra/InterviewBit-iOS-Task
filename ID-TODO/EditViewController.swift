@@ -8,43 +8,43 @@
 
 import UIKit
 
+protocol EditVCProtocol: class {
+    func didUpdateOrAdd(title: String, desc: String?)
+}
+
 class EditViewController: UIViewController {
 
     @IBOutlet weak var titleTextField: UITextField!
 
     @IBOutlet weak var descriptionTextField: UITextField!
 
+    weak var editDelegate: EditVCProtocol?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setupNavBar()
+    }
+
+    func setupNavBar() {
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneWithTask(_:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteTask(_:)))
+        self.navigationItem.title = "Edit/Update Task"
     }
 
 
-    @IBAction func deleteTask(_ sender: Any) {
+
+    @objc func deleteTask(_ sender: Any) {
 
     }
 
 
     @IBAction func updateTask(_ sender: Any) {
-
+        editDelegate?.didUpdateOrAdd(title: titleTextField.text ?? "", desc: descriptionTextField.text)
     }
 
-    @IBAction func doneWithTask(_ sender: Any) {
+    @objc func doneWithTask(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

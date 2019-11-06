@@ -32,7 +32,7 @@ class CompletedTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return completedTask.count
     }
 
 
@@ -52,7 +52,8 @@ class CompletedTableViewController: UITableViewController {
 extension CompletedTableViewController: CompletedCellProtocol {
     func didTapEdit(data: String?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "editNavVC")
-        self.present(editVC, animated: true)
+        let editVC = storyboard.instantiateViewController(identifier: "editVC")
+        let navVC = UINavigationController(rootViewController: editVC)
+        self.present(navVC, animated: true)
     }
 }

@@ -10,7 +10,11 @@ import UIKit
 
 class PendingTableViewController: UITableViewController {
 
-    var pendingTask = [String]()
+    var pendingTask = [String]() {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +29,10 @@ class PendingTableViewController: UITableViewController {
 
     @IBAction func addNewTask(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "editNavVC")
-        self.present(editVC, animated: true)
+        let editVC = storyboard.instantiateViewController(identifier: "editVC") as! EditViewController
+        editVC.editDelegate = self
+        let navVC = UINavigationController(rootViewController: editVC)
+        self.present(navVC, animated: true)
 
     }
 
@@ -39,12 +45,13 @@ class PendingTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 5
+        return pendingTask.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pendingCell", for: indexPath) as! PendingCell
         cell.pendingDelegate = self
+        cell.pendingTitleLabel.text = pendingTask[indexPath.row]
         return cell
     }
 
@@ -57,7 +64,14 @@ class PendingTableViewController: UITableViewController {
 extension PendingTableViewController: PendingCellProtocol {
     func didTapEdit(data: String?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "editNavVC")
-        self.present(editVC, animated: true)
+        let editVC = storyboard.instantiateViewController(identifier: "editVC")
+        let navVC = UINavigationController(rootViewController: editVC)
+        self.present(navVC, animated: true)
+    }
+}
+
+extension PendingTableViewController: EditVCProtocol {
+    func didUpdateOrAdd(title: String, desc: String?) {
+        pendingTask.append(title)
     }
 }
