@@ -18,7 +18,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="gp9-Y3-Hxi" kind="relationship" relationship="viewControllers" id="5wJ-D6-hmf"/>
-                        <segue destination="xB4-lG-D6G" kind="relationship" relationship="viewControllers" id="W28-D9-lmM"/>
+                        <segue destination="OA6-t5-sBP" kind="relationship" relationship="viewControllers" id="W28-D9-lmM"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-ly-a6U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -62,6 +62,11 @@
                         <viewLayoutGuide key="safeArea" id="Anv-6m-stb"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Task" id="S2U-ux-cLq">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="gYK-8h-BIi">
+                            <connections>
+                                <action selector="doneWithTask:" destination="Flf-GU-y2q" id="Qdr-gb-HUU"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="trash" id="zlL-DG-kZj">
                             <connections>
                                 <action selector="deleteTask:" destination="Flf-GU-y2q" id="CaQ-YM-wO4"/>
@@ -77,7 +82,7 @@
             </objects>
             <point key="canvasLocation" x="-31.884057971014496" y="529.6875"/>
         </scene>
-        <!--Completed-->
+        <!--IB TO-DO App-->
         <scene sceneID="bzE-l6-5sv">
             <objects>
                 <tableViewController id="xB4-lG-D6G" customClass="CompletedTableViewController" customModule="ID_TODO" customModuleProvider="target" sceneMemberID="viewController">
@@ -131,11 +136,11 @@
                             <outlet property="delegate" destination="xB4-lG-D6G" id="oE6-EG-7Uv"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Completed" id="UbJ-3p-c4d"/>
+                    <navigationItem key="navigationItem" title="IB TO-DO App" id="fzE-gh-gYG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2xU-qY-2RQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="882.60869565217399" y="186.83035714285714"/>
+            <point key="canvasLocation" x="1792.753623188406" y="186.83035714285714"/>
         </scene>
         <!--IB TO-DO App-->
         <scene sceneID="VDn-X4-mLy">
@@ -227,7 +232,7 @@
         <!--Navigation Controller-->
         <scene sceneID="2U1-T6-Cjj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="R3G-vT-lsY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="editNavVC" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="R3G-vT-lsY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cSZ-LD-zhT">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -241,6 +246,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="73S-Bo-67N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-942.02898550724649" y="529.6875"/>
+        </scene>
+        <!--Completed-->
+        <scene sceneID="NOc-Gk-rhB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OA6-t5-sBP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Completed" id="UbJ-3p-c4d"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zag-Od-t9L">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xB4-lG-D6G" kind="relationship" relationship="rootViewController" id="QX1-cN-6nA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="76U-Z4-s1N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="882.60869565217399" y="186.83035714285714"/>
         </scene>
     </scenes>
 </document>

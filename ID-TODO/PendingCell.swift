@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol PendingCellProtocol: class {
+    func didTapEdit(data: String?)
+}
+
 class PendingCell: UITableViewCell {
 
     @IBOutlet weak var pendingTitleLabel: UILabel!
 
+    weak var pendingDelegate: PendingCellProtocol?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +34,7 @@ class PendingCell: UITableViewCell {
     }
 
     @IBAction func editTask(_ sender: Any) {
-
+        pendingDelegate?.didTapEdit(data: pendingTitleLabel.text)
     }
 
 

@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol CompletedCellProtocol: class {
+    func didTapEdit(data: String?)
+}
+
 class CompletedCell: UITableViewCell {
+
+    weak var cellDelegate: CompletedCellProtocol?
 
 
     @IBOutlet weak var doneTaskLabel: UILabel!
@@ -27,8 +33,9 @@ class CompletedCell: UITableViewCell {
 
     }
 
-    
+
     @IBAction func editTask(_ sender: Any) {
+        cellDelegate?.didTapEdit(data: doneTaskLabel.text)
     }
-    
+
 }

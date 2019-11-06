@@ -31,6 +31,11 @@ class EditViewController: UIViewController {
 
     }
 
+    @IBAction func doneWithTask(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
+
 
     /*
     // MARK: - Navigation
