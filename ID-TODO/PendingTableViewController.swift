@@ -18,22 +18,25 @@ class PendingTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
 
     @IBAction func addNewTask(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "editVC") as! EditViewController
-        editVC.editDelegate = self
-        let navVC = UINavigationController(rootViewController: editVC)
-        self.present(navVC, animated: true)
-
+        let addTaskController = UIAlertController(title: "Add a New Task!", message: nil, preferredStyle: .alert)
+        addTaskController.addTextField(configurationHandler: { (textField: UITextField) in
+            textField.placeholder = "Add task here.."
+        })
+        let alertAction = UIAlertAction(title: "Add Task", style: .default, handler: { alter in
+            let taskTextField = addTaskController.textFields![0] as UITextField
+            if let task = taskTextField.text {
+                self.pendingTask.append(task)
+            }
+            addTaskController.dismiss(animated: true, completion: nil)
+        })
+        let cancle = UIAlertAction(title: "Cancle", style: .cancel, handler: nil)
+        addTaskController.addAction(alertAction)
+        addTaskController.addAction(cancle)
+        self.present(addTaskController, animated: true)
     }
 
     // MARK: - Table view data source
