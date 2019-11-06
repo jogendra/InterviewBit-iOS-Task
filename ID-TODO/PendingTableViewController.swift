@@ -54,6 +54,7 @@ class PendingTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "pendingCell", for: indexPath) as! PendingCell
         cell.pendingDelegate = self
+        cell.index = indexPath.row
         cell.pendingTitleLabel.text = pendingTask[indexPath.row]
         return cell
     }
@@ -65,16 +66,19 @@ class PendingTableViewController: UITableViewController {
 }
 
 extension PendingTableViewController: PendingCellProtocol {
-    func didTapEdit(data: String?) {
+    func didTapEdit(for index: Int, taskString: String?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let editVC = storyboard.instantiateViewController(identifier: "editVC")
+        let editVC = storyboard.instantiateViewController(identifier: "editVC") as! EditViewController
+        editVC.taskString = taskString
+        editVC.fromIndex = index
+        editVC.editDelegate = self
         let navVC = UINavigationController(rootViewController: editVC)
         self.present(navVC, animated: true)
     }
 }
 
 extension PendingTableViewController: EditVCProtocol {
-    func didUpdateOrAdd(title: String, desc: String?) {
-        pendingTask.append(title)
+    func didUpdateOrAdd(title: String, desc: String?, index: Int) {
+        pendingTask[index] = title
     }
 }

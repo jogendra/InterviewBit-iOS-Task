@@ -108,10 +108,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnI-K6-Vj1">
-                                            <rect key="frame" x="20" y="17" width="30" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JnI-K6-Vj1">
+                                            <rect key="frame" x="24" y="21" width="23" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                            <state key="normal" image="checkmark.seal.fill" catalog="system"/>
                                             <connections>
                                                 <action selector="unMarkTask:" destination="hyE-R2-xwu" eventType="touchUpInside" id="uco-SO-deN"/>
                                             </connections>
@@ -123,6 +124,11 @@
                                             <state key="normal" title="Edit">
                                                 <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="editTask:" destination="hyE-R2-xwu" eventType="touchUpInside" id="QyR-Od-03f"/>
                                             </connections>
@@ -168,10 +174,11 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORA-cf-BjS">
-                                            <rect key="frame" x="20" y="17" width="30" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORA-cf-BjS">
+                                            <rect key="frame" x="26" y="21" width="18" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <state key="normal" image="stop" catalog="system"/>
                                             <connections>
                                                 <action selector="doneButtonTapped:" destination="ait-M8-MLI" eventType="touchUpInside" id="YNp-56-uO0"/>
                                             </connections>
@@ -190,6 +197,11 @@
                                             <state key="normal" title="Edit">
                                                 <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                             </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="editTask:" destination="ait-M8-MLI" eventType="touchUpInside" id="eIX-rd-NVN"/>
                                             </connections>
@@ -260,7 +272,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark.seal.fill" catalog="system" width="64" height="60"/>
         <image name="doc.append" catalog="system" width="56" height="64"/>
         <image name="doc.text" catalog="system" width="56" height="64"/>
+        <image name="stop" catalog="system" width="64" height="56"/>
     </resources>
 </document>

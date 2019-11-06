@@ -9,7 +9,7 @@
 import UIKit
 
 protocol PendingCellProtocol: class {
-    func didTapEdit(data: String?)
+    func didTapEdit(for index: Int, taskString: String?)
 }
 
 class PendingCell: UITableViewCell {
@@ -17,6 +17,8 @@ class PendingCell: UITableViewCell {
     @IBOutlet weak var pendingTitleLabel: UILabel!
 
     weak var pendingDelegate: PendingCellProtocol?
+
+    var index: Int!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,7 +36,7 @@ class PendingCell: UITableViewCell {
     }
 
     @IBAction func editTask(_ sender: Any) {
-        pendingDelegate?.didTapEdit(data: pendingTitleLabel.text)
+        pendingDelegate?.didTapEdit(for: index, taskString: pendingTitleLabel.text)
     }
 
 

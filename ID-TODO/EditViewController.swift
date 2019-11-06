@@ -9,7 +9,7 @@
 import UIKit
 
 protocol EditVCProtocol: class {
-    func didUpdateOrAdd(title: String, desc: String?)
+    func didUpdateOrAdd(title: String, desc: String?, index: Int)
 }
 
 class EditViewController: UIViewController {
@@ -18,6 +18,10 @@ class EditViewController: UIViewController {
 
     @IBOutlet weak var descriptionTextField: UITextField!
 
+    var fromIndex: Int!
+
+    var taskString: String?
+
     weak var editDelegate: EditVCProtocol?
 
 
@@ -25,6 +29,7 @@ class EditViewController: UIViewController {
         super.viewDidLoad()
 
         setupNavBar()
+        titleTextField.text = taskString
     }
 
     func setupNavBar() {
@@ -41,7 +46,7 @@ class EditViewController: UIViewController {
 
 
     @IBAction func updateTask(_ sender: Any) {
-        editDelegate?.didUpdateOrAdd(title: titleTextField.text ?? "", desc: descriptionTextField.text)
+        editDelegate?.didUpdateOrAdd(title: titleTextField.text ?? "", desc: descriptionTextField.text, index: fromIndex)
     }
 
     @objc func doneWithTask(_ sender: Any) {
